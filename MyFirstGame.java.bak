@@ -1,0 +1,267 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class MyFirstGame extends JFrame implements ActionListener,TextListener
+{
+	JLabel L1,L2,L3,L4;
+	JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,bref,bqt,bcal;
+	TextField t1;
+	Container cp;
+	ImageIcon img,img1,img3;
+	 int r1,r2,r3,r4,r5,r6,r7,r8,r9,count=0,count1=0,count2=0,total=0;
+     boolean ok=true;
+	Random rand = new Random();
+	 String str2;
+	Color c1;
+
+	public MyFirstGame(String str)
+	{
+		super(str);
+	
+		cp=getContentPane();
+		this.setLayout(null);
+		Color c = new Color(0,255,255);
+		Color c1 = new Color(220,20,60);
+		Color c2 = new Color(23,106,43);
+		Font f = new Font("Bernard MT Condensed",Font.BOLD,30);
+		Font f1 = new Font("Chiller",Font.BOLD,80);
+		Font f2 = new Font("Arial Narrow",Font.PLAIN,13);
+		Font f3 = new Font("Arial",Font.BOLD,20);
+		Font f4 = new Font("Bodoni MT Black",Font.BOLD,25);
+		img=new ImageIcon("quit.png");
+		img1=new ImageIcon("refresh.png");
+		img3= new ImageIcon("calculate.png");
+		cp.setBackground(c);
+
+		L1=new JLabel("GAME");
+		L1.setBounds(150,30,100,30);
+		L1.setFont(f);
+		cp.add(L1);
+		L2=new JLabel("WELCOME");
+		L2.setBounds(50,70,350,80);
+		L2.setFont(f1);
+		L2.setForeground(c1);
+		cp.add(L2);
+		L3=new JLabel("Enter Your Number");
+		L3.setBounds(10,150,190,30);
+		L3.setFont(f3);
+		L3.setForeground(c1);
+		cp.add(L3);
+		L4=new JLabel("");
+		L4.setBounds(20,210,220,40);
+		L4.setFont(f4);
+		L4.setForeground(c2);
+		cp.add(L4);
+		t1=new TextField();
+		t1.setBounds(200,155,30,20);
+		t1.addTextListener(this);
+		cp.add(t1);
+		b1=new JButton("");
+		b1.setBounds(250,150,40,30);
+		b1.setFont(f2);
+		b1.setBackground(Color.cyan);
+		cp.add(b1);
+		b2=new JButton("");
+		b2.setBounds(300,150,40,30);
+		b2.setFont(f2);
+		b2.setBackground(Color.cyan);
+		cp.add(b2);
+		b3=new JButton("");
+		b3.setBounds(350,150,40,30);
+		b3.setFont(f2);
+		b3.setBackground(Color.cyan);
+	    cp.add(b3);
+		b4=new JButton("");
+		b4.setBounds(250,190,40,30);
+		b4.setFont(f2);
+		b4.setBackground(Color.cyan);
+		cp.add(b4);
+		b5=new JButton("");
+		b5.setBounds(300,190,40,30);
+		b5.setFont(f2);
+		b5.setBackground(Color.cyan);
+		cp.add(b5);
+		b6=new JButton("");
+		b6.setBounds(350,190,40,30);
+		b6.setFont(f2);
+		b6.setBackground(Color.cyan);
+		cp.add(b6);
+		b7=new JButton("");
+		b7.setBounds(250,230,40,30);
+		b7.setFont(f2);
+		b7.setBackground(Color.cyan);
+		cp.add(b7);
+		b8=new JButton("");
+		b8.setBounds(300,230,40,30);
+		b8.setFont(f2);
+		b8.setBackground(Color.cyan);
+		cp.add(b8);
+		b9=new JButton("");
+		b9.setBounds(350,230,40,30);
+		b9.setFont(f2);
+		b9.setBackground(Color.cyan);
+        cp.add(b9);
+		bref=new JButton(img1);
+		bref.setBounds(260,320,90,30);
+		bref.addActionListener(this);
+		cp.add(bref);
+		bqt=new JButton(img);
+		bqt.setBounds(50,320,90,30);
+		bqt.addActionListener(this);
+		cp.add(bqt);
+		bcal=new JButton(img3);
+		bcal.setBounds(154,320,90,30);
+		bcal.setEnabled(false);
+		bcal.addActionListener(this);
+		cp.add(bcal);
+		this.setSize(410,400);
+		this.setVisible(true);
+		setResizable(false);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+	}
+	public void textValueChanged(TextEvent te)
+	{
+		bcal.setEnabled(true);
+		if(t1.getText().equals(""))
+		{
+			b1.setText("");
+			b2.setText("");
+			b3.setText("");
+			b4.setText("");
+			b5.setText("");
+			b6.setText("");
+			b7.setText("");
+			b8.setText("");
+			b9.setText("");
+			t1.setText("");
+			L4.setText("");
+			count=0;
+			b1.setForeground(Color.black);
+			b2.setForeground(Color.black);
+			b3.setForeground(Color.black);
+			b4.setForeground(Color.black);
+			b5.setForeground(Color.black);
+			b6.setForeground(Color.black);
+			b7.setForeground(Color.black);
+			b8.setForeground(Color.black);
+			b9.setForeground(Color.black);
+			b1.setBackground(Color.cyan);
+			b2.setBackground(Color.cyan);
+			b3.setBackground(Color.cyan);
+			b4.setBackground(Color.cyan);
+			b5.setBackground(Color.cyan);
+			b6.setBackground(Color.cyan);
+			b7.setBackground(Color.cyan);
+			b8.setBackground(Color.cyan);
+			b9.setBackground(Color.cyan);
+		}
+	}
+	public void actionPerformed(ActionEvent ae)
+	{
+		if(ae.getSource()==bcal)
+		{
+			if(t1.getText().equals(1+"")||t1.getText().equals(2+"")||t1.getText().equals(3+"")||t1.getText().equals(4+"")||t1.getText().equals(5+"")||t1.getText().equals(6+"")||t1.getText().equals(7+"")||t1.getText().equals(8+"")||t1.getText().equals(9+"")||t1.getText().equals(0+""))
+			{
+				count=0;
+				b1.setForeground(Color.black);
+				b2.setForeground(Color.black);
+				b3.setForeground(Color.black);
+				b4.setForeground(Color.black);
+				b5.setForeground(Color.black);
+				b6.setForeground(Color.black);
+				b7.setForeground(Color.black);
+				b8.setForeground(Color.black);
+				b9.setForeground(Color.black);
+				b1.setBackground(Color.cyan);
+				b2.setBackground(Color.cyan);
+				b3.setBackground(Color.cyan);
+				b4.setBackground(Color.cyan);
+				b5.setBackground(Color.cyan);
+				b6.setBackground(Color.cyan);
+				b7.setBackground(Color.cyan);
+				b8.setBackground(Color.cyan);
+				b9.setBackground(Color.cyan);
+				r9 = rand.nextInt(10);
+				b1.setText(r9+"");
+				r1 = rand.nextInt(10);
+				b2.setText(r1+"");
+				r2 = rand.nextInt(10);
+				b3.setText(r2+"");
+				r3 = rand.nextInt(10);
+				b4.setText(r3+"");
+				r4 = rand.nextInt(10);
+				b5.setText(r4+"");
+				r5 = rand.nextInt(10);
+				b6.setText(r5+"");
+				r6 = rand.nextInt(10);
+				b7.setText(r6+"");
+				r7 = rand.nextInt(10);
+				b8.setText(r7+"");
+				r8 = rand.nextInt(10);
+				b9.setText(r8+"");
+
+				if(t1.getText().equals(r1+"")){ count++; b2.setForeground(Color.red); b2.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r2+"")){ count++; b3.setForeground(Color.red); b3.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r3+"")){ count++; b4.setForeground(Color.red); b4.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r4+"")){ count++; b5.setForeground(Color.red); b5.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r5+"")){ count++; b6.setForeground(Color.red); b6.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r6+"")){ count++; b7.setForeground(Color.red); b7.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r7+"")){ count++; b8.setForeground(Color.red); b8.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r8+"")){ count++; b9.setForeground(Color.red); b9.setBackground(Color.lightGray); }
+				if(t1.getText().equals(r9+"")){ count++; b1.setForeground(Color.red); b1.setBackground(Color.lightGray); }
+				if(count>=2 && count<=9)
+				{
+					L4.setText("You Win Game");
+					count1++;
+			
+
+				}
+				else if(count>=0 && count<=1)
+				{
+					L4.setText("You Loss Game");
+					count2++;
+					
+
+				}
+			}
+			else
+			{
+				L4.setText("Wrong Entry");
+			}
+		}
+		else if(ae.getSource()==bref)
+		{
+				b1.setText("");
+				b2.setText("");
+				b3.setText("");
+				b4.setText("");
+				b5.setText("");
+				b6.setText("");
+				b7.setText("");
+				b8.setText("");
+				b9.setText("");
+				t1.setText("");
+				L4.setText("");
+				count=0;
+				t1.requestFocus();
+		}
+		else if(ae.getSource()==bqt)
+		{
+				int i=JOptionPane.showConfirmDialog(this, "Do you want to Quit Game","Aleart",JOptionPane.YES_NO_OPTION);
+				if(i==0)
+				{
+					System.exit(0);
+				}
+				if(i==1)
+				{				
+				}	
+		}
+	}
+	public static void main(String []args)
+	{
+		MyFirstGame mfg=new MyFirstGame("Play Game");
+		mfg.show();
+	}
+}
